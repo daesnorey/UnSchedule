@@ -103,6 +103,7 @@ public class MainFragment extends Fragment {
         Log.d("onActivityResult", " Mainfragment: "+ requestCode);
         if(requestCode == 1){
             textView.setText("second Clicked");
+            // segunda prueba
         }
     }
 
@@ -113,7 +114,7 @@ public class MainFragment extends Fragment {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnFragmentInteractionListener test");
         }
     }
 
