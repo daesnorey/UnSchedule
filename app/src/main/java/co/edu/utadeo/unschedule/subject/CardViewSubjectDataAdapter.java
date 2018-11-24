@@ -47,7 +47,9 @@ public class CardViewSubjectDataAdapter extends RecyclerView.Adapter<CardViewSub
     @Override
     public CardViewSubjectDataAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemLayoutView = LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.item_subjet, null);
+                R.layout.item_subjet, null,false);
+        RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        itemLayoutView.setLayoutParams(lp);
         ViewHolder viewHolder = new ViewHolder(itemLayoutView);
         return viewHolder;
     }
@@ -90,7 +92,7 @@ public class CardViewSubjectDataAdapter extends RecyclerView.Adapter<CardViewSub
      */
     @Override
     public int getItemCount() {
-        return dataSet.size();
+        return dataSet == null ? 0 : dataSet.size();
     }
 
     // inner class to hold a reference to each item of RecyclerView
@@ -119,7 +121,6 @@ public class CardViewSubjectDataAdapter extends RecyclerView.Adapter<CardViewSub
     // Listener
 
     public interface SubjectAdapterListener {
-
         void buttonEditSubjectClicked(View v, int position);
     }
 }

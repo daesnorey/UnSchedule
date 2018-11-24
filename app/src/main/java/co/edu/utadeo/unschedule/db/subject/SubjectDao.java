@@ -3,7 +3,9 @@ package co.edu.utadeo.unschedule.db.subject;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import java.util.List;
 
@@ -20,6 +22,12 @@ public interface SubjectDao {
 
     @Insert
     void insertAll(Subject... subjects);
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    long insert(Subject subject);
+
+    @Update
+    void update(Subject... subjects);
 
     @Delete
     void delete(Subject subject);

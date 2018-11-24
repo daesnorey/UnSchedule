@@ -6,14 +6,19 @@ import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-import java.util.Date;
-
 @Entity(foreignKeys = @ForeignKey(entity = Subject.class,
         parentColumns = "subjectId",
         childColumns = "subject_id"), indices = @Index(value = {"subject_id"}))
 public class Schedule {
 
-    @PrimaryKey
+    public Schedule(int subjectId) {
+        this.subjectId = subjectId;
+    }
+
+    public Schedule() {
+    }
+
+    @PrimaryKey(autoGenerate = true)
     private int scheduleId;
 
     @ColumnInfo(name = "subject_id")
@@ -25,11 +30,17 @@ public class Schedule {
     @ColumnInfo(name = "place")
     private String place;
 
-    @ColumnInfo(name = "start_time")
-    private int startDate;
+    @ColumnInfo(name = "start_hour")
+    private int startHour;
 
-    @ColumnInfo(name = "end_time")
-    private int endTime;
+    @ColumnInfo(name = "start_minute")
+    private int startMinute;
+
+    @ColumnInfo(name = "end_hour")
+    private int endHour;
+
+    @ColumnInfo(name = "end_minute")
+    private int endMinute;
 
     public int getScheduleId() {
         return scheduleId;
@@ -39,9 +50,13 @@ public class Schedule {
         this.scheduleId = scheduleId;
     }
 
-    public int getSubjectId() { return subjectId; }
+    public int getSubjectId() {
+        return subjectId;
+    }
 
-    public void setSubjectId(int subjectId) { this.subjectId = subjectId; }
+    public void setSubjectId(int subjectId) {
+        this.subjectId = subjectId;
+    }
 
     public int getDayId() {
         return dayId;
@@ -59,19 +74,35 @@ public class Schedule {
         this.place = place;
     }
 
-    public int getStartDate() {
-        return startDate;
+    public int getStartHour() {
+        return startHour;
     }
 
-    public void setStartDate(int startDate) {
-        this.startDate = startDate;
+    public void setStartHour(int startHour) {
+        this.startHour = startHour;
     }
 
-    public int getEndTime() {
-        return endTime;
+    public int getStartMinute() {
+        return startMinute;
     }
 
-    public void setEndTime(int endTime) {
-        this.endTime = endTime;
+    public void setStartMinute(int startMinute) {
+        this.startMinute = startMinute;
+    }
+
+    public int getEndHour() {
+        return endHour;
+    }
+
+    public void setEndHour(int endHour) {
+        this.endHour = endHour;
+    }
+
+    public int getEndMinute() {
+        return endMinute;
+    }
+
+    public void setEndMinute(int endMinute) {
+        this.endMinute = endMinute;
     }
 }
